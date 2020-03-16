@@ -14,7 +14,7 @@ from randomcode import img2str
 
 loginUrl=r"http://jwxt.wust.edu.cn/whkjdx/Logon.do?method=logon"
 randomCodeUrl=r"http://jwxt.wust.edu.cn/whkjdx/verifycode.servlet"
-data={"USERNAME":"201513158020","PASSWORD":"daohaosima.","x":"0","y":"0"}
+data={"USERNAME":"","PASSWORD":"","x":"0","y":"0"}
 header={"User-Agent":"Mozilla/5.0 (Windows NT 10.0; WOW64; Trident/7.0; LCTE; rv:11.0) like Gecko",
         "Referer":"http://jwxt.wust.edu.cn/whkjdx/Logon.do?method=logon",
         "Host": "jwxt.wust.edu.cn",
@@ -71,14 +71,6 @@ def getgpa(cookies):
     return gpa.text
 
 def getscheme(cookies):
-    #    datascheme={'istsxx':'no',
-#    'method':'goListKbByXs',
-#    'xnxqh': '2017-2018-2',
-#    'xs0101id': id}
-#    scheme=req.post("http://jwxt.wust.edu.cn/whkjdx/tkglAction.do?method=goListKbByXs&istsxx=no&xnxqh=2017-2018-2&zc=&xs0101id=201513158020",cookies=req.utils.dict_from_cookiejar(imgobj.cookies),headers=header,data=datascheme)
-#    print("(删除验证码)")
-#    os.remove("img.jpg")
-#    return gpa.text,scheme.text
     pass
 
 def setpwd(cookies,pwd,newpwd):
@@ -86,37 +78,8 @@ def setpwd(cookies,pwd,newpwd):
     data={"oldpassword":pwd,"password1":newpwd,"password2":newpwd,"button1":"保存"}
     rs=req.post(url,cookies=cookies,data=data,headers=header)
     return rs
-#这个函数没有必要，只要上面的getcookies不为空，即说明登陆成功
-    """
-    login和getcookies还是有区别的，login只要登陆成功，就返回为true
-    getcookies
-    """
-#def login():
-#
-#    flag=None
-#    while flag==None:
-#        #首先获取验证码
-#        imgobj=req.get(randomCodeUrl)
-#        #验证码路径...
-#        with open("img.jpg","wb") as f:
-#            f.write(imgobj.content)
-#        #人工识别改为机器识别
-#        img=('img.jpg')
-#        code=img2str(img)
-#        data["RANDOMCODE"]=code
-#        login=req.post(loginUrl,data=data,cookies=req.utils.dict_from_cookiejar(imgobj.cookies),headers=header)
-#        b=BS(login.text,'html5lib')
-#        if b.title!=None:
-#            #登录失败
-#            errorinfo=b.find("span",{"id":"errorinfo"})
-#            if errorinfo!=None:
-#                #print(errorinfo.string)
-#                if(errorinfo.string=='验证码错误!!'):
-#                    continue
-#                elif errorinfo.string=='该帐号不存在或密码错误,请联系管理员!':
-#                    return False
-#        else:
-#            return True
+
+
             
 def html2csv(html,id,path=None):
     bsobj=BS(html,"html5lib")
